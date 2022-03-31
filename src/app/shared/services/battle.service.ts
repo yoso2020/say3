@@ -125,9 +125,6 @@ export class BattleService {
       })
     });
     this.currentPlayer.doMarking = true;
-    if (this.readyToStart()) {
-      this.start();
-    }
   }
 
   private setDeleting() {
@@ -192,7 +189,11 @@ export class BattleService {
     piece.state = 'Marked';
     this.setBatchState('Marking', 'Activated')
     this.currentPlayer.doMarking = false;
-    this.switchPlayer();
+    if (this.readyToStart()) {
+      this.start();
+    } else {
+      this.switchPlayer();
+    }
   }
 
   private kill(piece: Piece) {
