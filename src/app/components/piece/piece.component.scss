@@ -1,0 +1,66 @@
+.piece {
+  position: absolute;
+  display: inline-block;
+  cursor: pointer;
+
+  .inner {
+    width: 50%;
+    height: 50%;
+    display: inline-block;
+    background: transparent;
+    border-radius: 50%;
+    margin: 25%;
+  }
+
+  .inner.red {
+    background: indianred;
+    border: solid indianred 1px;
+  }
+
+  .inner.blue {
+    background: royalblue;
+    border: solid royalblue 1px;
+  }
+
+  .inner.activated {
+    background: #ddd;
+    border: solid 1px #fff;
+  }
+
+  .inner.marked {
+    background: transparent;
+    cursor: not-allowed;
+  }
+
+  .inner.marked:after {
+    content: "";
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    width: 10%;
+    height: 70%;
+    background: darkred;
+    transform: rotate(45deg);
+  }
+
+  .inner.deleting, .inner.marking {
+    background: #ddd;
+  }
+  .inner.moving-in {
+    border: solid 2px orange;
+    cursor: pointer;
+  }
+  .moving{
+    animation:zoom-in-out 1.5s linear 0s infinite normal;
+  }
+  @keyframes zoom-in-out {
+    0%{ -ms-transform: scale(1); transform: scale(1); }
+    50%{ -ms-transform: scale(1.2); transform: scale(1.2); }
+    100%{ -ms-transform: scale(1); transform: scale(1); }
+  }
+}
+
+.un-clickable {
+  cursor: default;
+}
+

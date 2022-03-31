@@ -1,0 +1,14 @@
+<i [ngStyle]="getPieceStyle(piece.colIndex, piece.rowIndex)" [title]="piece.state" [id]="piece.id"
+   *ngIf="piece.visible"
+   (click)="move(piece)"
+   class="piece"
+   [class.un-clickable]="battleService.state==='NotStarted' ||
+    battleService.state==='Started' && piece.color !== battleService.currentPlayer.color">
+    <i class="inner {{piece.color.toLocaleLowerCase()}}"
+       [class.moving]="piece.state==='MovingIn' || piece.state==='MovingOut'"
+       [class.moving-in]="piece.state==='MovingIn'"
+       [class.marked]="piece.state==='Marked'"
+       [class.marking]="piece.state==='Marking'"
+       [class.deleting]="piece.state==='Deleting'"
+       [class.deleted]="piece.state==='Deleted'"></i>
+</i>

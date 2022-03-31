@@ -1,0 +1,47 @@
+:host {
+  padding: 1rem 0;
+}
+.board {
+  position: relative;
+
+  & .square {
+    border: 1px solid #fff;
+    position: sticky;
+  }
+
+  .horizon {
+    border-top: 1px solid #fff;
+    position: absolute;
+    top: 50%;
+    left: 0;
+  }
+
+  .vertical {
+    border-left: 1px solid #fff;
+    position: absolute;
+    left: 50%;
+    top: 0;
+  }
+
+  & > div {
+    overflow: hidden;
+    position: relative;
+  }
+
+  .rotated {
+    top: 0;
+    position: absolute;
+    transform: rotate(45deg);
+  }
+
+  .center-mask {
+    position: absolute;
+    background: #ddd;
+  }
+}
+
+.board-player {
+  font-size: 2rem;
+}
+
+
