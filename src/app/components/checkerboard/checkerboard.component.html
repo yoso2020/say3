@@ -1,7 +1,6 @@
 <div class="text-center board-player" [ngStyle]="{color: battleService.currentPlayer.color}"
-     *ngIf="battleService.isRunning()">
-    {{battleService.currentPlayer.name}}行动
-</div>
+     *ngIf="battleService.isRunning()" [innerText]="getStateText()">
+    </div>
 <div [ngStyle]="paddingStyle" class="board" *ngIf="battleService.isRunning()">
     <div [ngStyle]="{padding: (basicWidth -1) + 'px'}" class="square">
         <div class="rotated square"
