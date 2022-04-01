@@ -1,4 +1,4 @@
-<i [ngStyle]="getPieceStyle(piece.colIndex, piece.rowIndex)" [title]="piece.state" [id]="piece.id"
+<i [ngStyle]="pieceStyle" [title]="piece.state" [id]="piece.id"
    *ngIf="piece.visible"
    (click)="move(piece)"
    class="piece"
