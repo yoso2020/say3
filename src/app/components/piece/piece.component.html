@@ -4,7 +4,7 @@
    class="piece"
    [class.un-clickable]="battleService.state==='NotStarted' ||
     battleService.state==='Started' && piece.color !== battleService.currentPlayer.color">
-    <i class="inner {{piece.color.toLocaleLowerCase()}}"
+    <i [class.shadow]="piece.state === 'Activated'" class="inner {{piece.color.toLocaleLowerCase()}}"
        [class.moving]="piece.state==='MovingIn' || piece.state==='MovingOut'"
        [class.moving-in]="piece.state==='MovingIn'"
        [class.marked]="piece.state==='Marked'"

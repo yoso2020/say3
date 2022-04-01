@@ -5,19 +5,19 @@
   position: relative;
 
   & .square {
-    border: 1px solid #fff;
+    border: 3px solid #fff;
     position: sticky;
   }
 
   .horizon {
-    border-top: 1px solid #fff;
+    border-top: 3px solid #fff;
     position: absolute;
     top: 50%;
     left: 0;
   }
 
   .vertical {
-    border-left: 1px solid #fff;
+    border-left: 3px solid #fff;
     position: absolute;
     left: 50%;
     top: 0;
