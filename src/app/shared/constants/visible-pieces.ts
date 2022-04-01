@@ -37,4 +37,4 @@ export default [
     {y: 3, neighbors: [[0, 6], [6, 6], [3, 5]]},
     {y: 6, neighbors: [[3, 6], [6, 3], [5, 5]]}
   ]
-];
+]

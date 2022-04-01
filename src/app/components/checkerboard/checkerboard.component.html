@@ -1,19 +1,18 @@
 <div class="text-center board-player" [ngStyle]="{color: battleService.currentPlayer.color}"
-     *ngIf="battleService.isRunning()">
-    {{battleService.currentPlayer.name}}行动
-</div>
+     *ngIf="battleService.isRunning()" [innerText]="getStateText()">
+    </div>
 <div [ngStyle]="paddingStyle" class="board" *ngIf="battleService.isRunning()">
-    <div [ngStyle]="{padding: (basicWidth -1) + 'px'}" class="square">
+    <div [ngStyle]="{padding: basicWidth + 'px', width: basicWidth*4 + 4 + 'px'}" class="square">
         <div class="rotated square"
              [ngStyle]="{width: rotatedLength + 'px', height: rotatedLength + 'px', left: -rotatedOffset + 'px'}"></div>
         <div class="rotated square"
-             [ngStyle]="{width: rotatedLength + 'px', height: rotatedLength + 'px', left: rotatedOffset + 'px'}"></div>
-        <div [ngStyle]="{width: basicWidth*6 + 'px'}" class="horizon"></div>
-        <div [ngStyle]="{height: basicWidth*6 + 'px'}" class="vertical"></div>
-        <div [ngStyle]="{padding: basicWidth + 'px'}" class="square">
+             [ngStyle]="{width: rotatedLength + 'px', height: rotatedLength + 'px', left: rotatedOffset + 2 + 'px'}"></div>
+        <div [ngStyle]="{width: (basicWidth*6 + 4) + 'px'}" class="horizon"></div>
+        <div [ngStyle]="{height: (basicWidth*6 + 4) + 'px'}" class="vertical"></div>
+        <div [ngStyle]="{padding: basicWidth + 'px', width: basicWidth*2 + 2 + 'px'}" class="square">
             <div [ngStyle]="paddingStyle" class="square"></div>
             <div [ngStyle]="paddingStyle" class="center-mask square"
-                 [ngStyle]="{top: basicWidth + 'px', width: 2*basicWidth + 'px', height: 2*basicWidth + 'px'}"></div>
+                 [ngStyle]="{top: basicWidth + 'px', width: basicWidth*2 + 'px', height: basicWidth*2 + 'px'}"></div>
         </div>
     </div>
     <ng-container *ngFor="let row of battleService.pieces; let i1=index;">
