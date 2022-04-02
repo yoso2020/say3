@@ -5,19 +5,19 @@
   position: relative;
 
   & .square {
-    border: 3px solid #fff;
     position: sticky;
+    box-shadow: 0 0 0 3px #fff;
   }
 
   .horizon {
-    border-top: 3px solid #fff;
+    box-shadow: 0 0 0 1.5px #fff;
     position: absolute;
     top: 50%;
     left: 0;
   }
 
   .vertical {
-    border-left: 3px solid #fff;
+    box-shadow: 0 0 0 1.5px #fff;
     position: absolute;
     left: 50%;
     top: 0;
@@ -41,7 +41,7 @@
 }
 
 .board-player {
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 

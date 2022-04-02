@@ -5,9 +5,9 @@ import {Component, HostListener} from '@angular/core'
   template: `
       <!--The content below is only a placeholder and can be replaced.-->
       <div class="content">
-          <app-sidebar color="red" *ngIf="!isMobile"></app-sidebar>
+          <app-sidebar color="Red" *ngIf="!isMobile"></app-sidebar>
           <app-checkerboard [boardWidth]="boardWidth"></app-checkerboard>
-          <app-sidebar color="blue" *ngIf="!isMobile"></app-sidebar>
+          <app-sidebar color="Blue" *ngIf="!isMobile"></app-sidebar>
       </div>
   `,
   styles: [`

@@ -20,4 +20,12 @@ export class Player {
     this.logs.push({action, piece})
     this.steps++
   }
+
+  reset() {
+    this.doMoving = false
+    this.doDeleting = false
+    this.doMarking = false
+    this.steps = 0
+    this.logs = []
+  }
 }

@@ -1,5 +1,6 @@
 <div class="player-name" [ngStyle]="colorStyle">{{player.name}}</div>
 <hr>
 <p>
-    已经走了 <span [ngStyle]="colorStyle"> {{player.steps}} </span> 步
+    已经走了 <span [ngStyle]="colorStyle"> {{player.steps}} </span> 步,
+    剩余 <span [ngStyle]="colorStyle"> {{battleService.getPlayerPiecesCount(color)}} </span> 棋子
 </p>
