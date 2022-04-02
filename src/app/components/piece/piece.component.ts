@@ -11,20 +11,23 @@ export class PieceComponent implements OnChanges {
   @Input() piece: Piece
   @Input() basicWidth: number
   pieceStyle = {}
+
   constructor(public battleService: BattleService) {
   }
 
   ngOnChanges(): void {
-    // piece length is 0.5 basic length
-    // piece offset is 50% piece length, so offset = index + 1 - 0.5 / 2 = 0.75
-    // border width is 3px
-    const pieceLength = this.basicWidth / 2
-    const pieceLengthStyle = pieceLength + 'px'
+    // piece width is 0.5 basic width
+    // piece offset is 50% piece width, so offset = index + 1 - 0.5 / 2 = 0.75
+    const pieceWidth = this.basicWidth / 2
+    const pieceWidthStyle = pieceWidth + 'px'
+    // didn't know why this offset happens
+    const xOffset = this.piece.colIndex < 3 ? -2 : this.piece.colIndex > 3 ? 2 : 0
+    const yOffset = this.piece.rowIndex < 3 ? -2 : 0
     this.pieceStyle = {
-      left: (this.piece.colIndex + 0.75)  * this.basicWidth + (this.piece.colIndex+1) * 2 + 'px',
-      top: (this.piece.rowIndex + 0.75) * this.basicWidth + (this.piece.rowIndex +1) * 2 + 'px',
-      width: pieceLengthStyle,
-      height: pieceLengthStyle
+      left: (this.piece.colIndex + 0.75) * this.basicWidth + xOffset + 'px',
+      top: (this.piece.rowIndex + 0.75) * this.basicWidth + yOffset + 'px',
+      width: pieceWidthStyle,
+      height: pieceWidthStyle
     }
   }
 
