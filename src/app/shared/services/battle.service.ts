@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core'
 import {Player} from '../models/player'
 import {Piece} from '../models/piece'
-import {BattleState, PieceState} from '../models/types'
+import {BattleState, PieceState, PlayerColor} from '../models/types'
 import VisiblePieces from '../constants/visible-pieces'
 
 const total = 6
@@ -45,6 +45,10 @@ export class BattleService {
     return this.battleState
   }
 
+  getPlayerPiecesCount(color: PlayerColor) {
+    return this.pieces.reduce((count, row) => count + row.filter(p => p.color === color).length, 0)
+  }
+
   isRunning() {
     return ['Started', 'Preparing'].includes(this.battleState)
   }
@@ -59,8 +63,12 @@ export class BattleService {
       p.color = 'Unknown'
       p.state = 'Unactivated'
     }))
-    this.playerBlue.steps = 0
-    this.playerRed.steps = 0
+    this.playerBlue.reset()
+    this.playerRed.reset()
+
+    // this.pieces = JSON.parse(localStorage.getItem('xx'))
+    // this.battleState = 'Started'
+    // this.currentPlayer = this.playerBlue
   }
 
   start() {
@@ -174,6 +182,8 @@ export class BattleService {
     this.setBatchState('MovingIn', 'Deleted')
     if (this.canSay3(piece)) {
       this.setDeleting()
+    } else if (!this.opponentCanMove()) {
+      this.setWon()
     } else {
       this.switchPlayer()
     }
@@ -195,9 +205,8 @@ export class BattleService {
     piece.color = 'Unknown'
     this.setBatchState('Deleting', 'Activated')
     this.currentPlayer.doDeleting = false
-    if (this.win()) {
-      this.battleState = 'Finished'
-      this.currentPlayer.won = true
+    if (this.win() || !this.opponentCanMove()) {
+      this.setWon()
     } else {
       this.switchPlayer()
     }
@@ -209,6 +218,13 @@ export class BattleService {
 
   private canSay3(piece: Piece) {
     return this.compareRow(piece) || this.compareColumn(piece) || this.compareOblique(piece)
+  }
+
+  private opponentCanMove() {
+    return this.battleState === 'Started' && this.pieces.some(row => {
+      return row.some(p => p.visible && p.color !== this.currentPlayer.color && p.state === 'Activated'
+        && p.neighbors.some(i => this.pieces[i[1]][i[0]].state === 'Deleted'))
+    })
   }
 
   private compareRow(piece: Piece): boolean {
@@ -259,5 +275,10 @@ export class BattleService {
       count += row.filter(p => p.visible && p.color !== this.currentPlayer.color && p.state === 'Activated').length
     })
     return count < 3
+  }
+
+  private setWon() {
+    this.battleState = 'Finished'
+    this.currentPlayer.won = true
   }
 }

@@ -4,46 +4,59 @@
   cursor: pointer;
 
   .inner {
-    width: 50%;
-    height: 50%;
+    width: 80%;
+    height: 80%;
     display: inline-block;
     background: transparent;
     border-radius: 50%;
-    margin: 25%;
+    margin: 10%;
+    cursor: pointer;
   }
 
-  .inner.red {
+  .shadow {
+    box-shadow: 1px 2px 3px #333, 0px 0px 8px #333 inset;
+  }
+
+  .red {
     background: indianred;
-    border: solid indianred 1px;
+  }
+  .red.marked, .red.marking, .red.deleting {
+    border: solid 2px indianred;
   }
 
-  .inner.blue {
+  .blue {
     background: royalblue;
-    border: solid royalblue 1px;
+  }
+  .blue.marked, .blue.marking, .blue.deleting {
+    border: solid 2px royalblue;
   }
 
-  .inner.activated {
+  .activated {
     background: #ddd;
     border: solid 1px #fff;
   }
 
-  .inner.marked {
-    background: transparent;
+  .marked {
+    background: #ddd;
     cursor: not-allowed;
+  }
+
+  .deleted {
+    cursor: default;
   }
 
   .inner.marked:after {
     content: "";
     position: absolute;
-    top: 20%;
-    left: 50%;
+    top: 10%;
+    left: 55%;
     width: 10%;
-    height: 70%;
+    height: 100%;
     background: darkred;
     transform: rotate(45deg);
   }
 
-  .inner.deleting, .inner.marking {
+  .inner.deleting, .inner.marking, .inner.moving-in {
     background: #ddd;
   }
   .inner.moving-in {
@@ -54,9 +67,9 @@
     animation:zoom-in-out 1.5s linear 0s infinite normal;
   }
   @keyframes zoom-in-out {
-    0%{ -ms-transform: scale(1); transform: scale(1); }
-    50%{ -ms-transform: scale(1.2); transform: scale(1.2); }
-    100%{ -ms-transform: scale(1); transform: scale(1); }
+    0%{ -ms-transform: scale(0.8); transform: scale(0.8); }
+    50%{ -ms-transform: scale(1.1); transform: scale(1.1); }
+    100%{ -ms-transform: scale(0.8); transform: scale(0.8); }
   }
 }
 
